@@ -26,7 +26,9 @@ mongoose.connect('mongodb://localhost/chinaRoot').then((response) => {
     console.log(err);
   })
 
-routes(app)//设置路由
+app.use(routes())
+
+// routes(app)//设置路由
 app.use(historyApiFallback())
 app.use(serve(path.resolve('dist'))) // 将webpack打包好的项目目录作为Koa静态文件服务的目
 app.use(function* (ctx, next) {
