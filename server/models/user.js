@@ -33,6 +33,10 @@ const UserSchema = new Schema({
     password: {
         type: String,
         default: ''
+    },
+    nickname:{
+        type:String,
+        default:''
     }
 });
 const validatePresenceOf = value => value && value.length;
@@ -80,6 +84,9 @@ UserSchema.statics = {
     getUserByName:function(name){
         return this.findOne({username:name})
             // .select(options.select)
+    },
+    registerUser:function(username,password){
+        
     }
 }
 module.exports = mongoose.model("User", UserSchema);;
