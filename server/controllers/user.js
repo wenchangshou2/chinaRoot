@@ -83,7 +83,7 @@ const registerUser = async function (ctx) {
         };
         return;
     }
-    if (password === undefined || username === '') {
+    if (password === undefined || password === '') {
         ctx.body = {
             success: false,
             info: '密码不能为空'
