@@ -1,5 +1,5 @@
-import user from '../models/user.js'
-import jwt from 'jsonwebtoken';
+import * as user from '../models/user'
+import * as jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'
 const {
     wrap: async

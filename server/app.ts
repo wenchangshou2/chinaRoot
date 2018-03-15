@@ -1,27 +1,23 @@
-import Koa from 'koa';
-import auto from './server/routes/auth.js';
-import serve from 'koa-static'
-import middleware from './server/middleware';
+import * as Koa from 'koa';
+import auto from './routes/auth';
+import * as serve from 'koa-static'
+import middleware from './middleware';
 
 const cors = require('koa2-cors');
 
-import historyApiFallback from 'koa2-history-api-fallback'
-import routes from './server/routes/index.js';
+import * as historyApiFallback from 'koa2-history-api-fallback'
+import routes from './routes/index';
 
 var path = require('path');
 let app = new Koa();
 let port = process.env.PORT || 8080;
 app.use(middleware());
-// app.on('error', function (err, ctx) {
-//   console.log('server error', err)
-// })
-//mongo
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/chinaRoot').then((response) => {
+mongoose.connect('mongodb://localhost/chinaRoot').then((response:any) => {
     console.log('mongo connection created');
   })
-  .catch((err) => {
+  .catch((err:any) => {
     console.log('error connecting to Mongo');
     console.log(err);
   })

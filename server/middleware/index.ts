@@ -1,11 +1,11 @@
 'use strict';
-import compose from 'koa-compose';
-import koaBodyparser from 'koa-bodyparser';
+import * as compose from 'koa-compose';
+import * as koaBodyparser from 'koa-bodyparser';
 
 import checkauth from './checkAuth';
 import checkJwt from './jwt';
-import json from 'koa-json';
-import logger from 'koa-logger';
+import * as json from 'koa-json';
+import * as logger from 'koa-logger';
 import log from './log'
 const cors = require('koa2-cors');
 export default function middleware() {

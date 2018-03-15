@@ -1,6 +1,6 @@
-import auth from '../controllers/user.js'
-import koaRouter from 'koa-router'
-const router = koaRouter()
+import auth from '../controllers/user'
+import * as koaRouter from 'koa-router'
+const router = new koaRouter()
 
 router.get('/user/:id', auth.getUserInfo) // 定义url的参数是id
 router.post('/register',auth.registerUser)

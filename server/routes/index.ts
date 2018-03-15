@@ -1,6 +1,6 @@
 var Router = require('koa-router');
-import compose from 'koa-compose';
-import jwt from 'koa-jwt'
+import * as compose from 'koa-compose';
+import * as jwt from 'koa-jwt'
 import auth from './auth';
 import api from './api';
 var router = new Router();
