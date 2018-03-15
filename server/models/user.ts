@@ -1,64 +1,47 @@
+import {IUser} from './interfaces/user';
 const mongoose = require('mongoose');
+import { Document, Schema, model } from 'mongoose';
 const crypto = require('crypto');
-const Schema = mongoose.Schema;
-const UserSchema = new Schema({
+
+export interface IUserModel extends IUser,Document{
+    makeSalt(): string,
+    encryptPassword(): string
+}
+// const Schema = mongoose.Schema;
+export var UserSchema: Schema = new Schema({
     name: {
         type: String,
-        default: ''
     },
     email: {
         type: String,
-        default: ''
     },
     username: {
         type: String,
-        default: ''
     },
     provider: {
         type: String,
-        default: ''
     },
     hashed_password: {
         type: String,
-        default: ''
     },
     salt: {
         type: String,
-        default: ''
     },
     authToken: {
         type: String,
-        default: ''
     },
     password: {
         type: String,
-        default: ''
     },
-    nickname:{
-        type:String,
-        default:''
+    nickname: {
+        type: String,
     }
 });
-const validatePresenceOf = value => value && value.length;
-// UserSchema.virtual('password')
-//     .set(function (password) {
-//         this._password = password;
-//         this.salt = this.makeSalt();
-//         this.hashed_password = this.encryptPassword(password);
-//     }).get(function () {
-//         return this._password;
-//     });
-
-UserSchema.method = {
-    /**
-     * 
-     * 
-     * @returns 
-     */
-    makeSalt: function () {
+const validatePresenceOf = (value: any) => value && value.length;
+UserSchema.methods.makeSalt=function():string{
         return Math.round((new Date().valueOf() * Math.random())) + '';
-    },
-    encryptPassword: function (password) {
+}
+UserSchema.methods.encryptPassword = function (password: string): string {
         if (!password) return '';
         try {
             return crypto
@@ -68,25 +51,18 @@ UserSchema.method = {
         } catch (err) {
             return '';
         }
-    }
-};
+}
 UserSchema.statics = {
-    load: function (options, cb) {
+    load: function (options: any, cb: any) {
         options.select = options.select || 'username password';
-        // this.findOne({ username: 'wenchangshou' }, function(err, character) {
-        //     console.log(character); // { name: 'Sam', inventory: {}}
-        //   });
         return this.find(options.criteria)
-            // .select(options.select)
-            // .exec()
-            // .exec(cb);
     },
-    getUserByName:function(name){
-        return this.findOne({username:name})
-            // .select(options.select)
+    getUserByName: function (name: string) {
+        return this.findOne({ username: name })
+        // .select(options.select)
     },
-    registerUser:function(username,password){
-        
+    registerUser: function (username: string, password: string) {
+
     }
 }
-module.exports = mongoose.model("User", UserSchema);;
+module.exports = model("User", UserSchema);;

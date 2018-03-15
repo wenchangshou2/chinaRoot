@@ -1,27 +1,28 @@
-import * as user from '../models/user'
-import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcryptjs'
-const {
-    wrap: async
-} = require('co');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const user = require("../models/user");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const { wrap: async } = require('co');
 const getUserInfo = async function (ctx, next) {
     const id = ctx.params.id;
     let options = {
         criteria: {
             username: id
         }
-    }
-    let result = await user.getUserByName(id)
+    };
+    let result = await user.getUserByName(id);
     if (result == undefined) {
         ctx.body = {
             success: false,
             info: '用户不存在'
-        }
-    } else {
+        };
+    }
+    else {
         ctx.body = result;
     }
     // console.log('result',result);
-}
+};
 const postUserAuth = async function (ctx) {
     const data = ctx.request.body;
     let username = data.username ? data.username : '';
@@ -31,14 +32,14 @@ const postUserAuth = async function (ctx) {
         ctx.body = {
             success: false,
             info: '用户名不能为空'
-        }
+        };
         return;
     }
     if (password === '') {
         ctx.body = {
             success: false,
             info: '密码不能为空'
-        }
+        };
         return;
     }
     const userinfo = await user.getUserByName(username);
@@ -48,12 +49,13 @@ const postUserAuth = async function (ctx) {
             ctx.body = {
                 success: false,
                 info: '密码错误!',
-            }
-        } else {
+            };
+        }
+        else {
             const userToken = {
                 name: userinfo.username,
                 id: userinfo.id
-            }
+            };
             console.log(userToken);
             const secret = 'seatry';
             const token = jwt.sign(userToken, secret, {
@@ -62,20 +64,18 @@ const postUserAuth = async function (ctx) {
             ctx.body = {
                 success: true,
                 token: token
-            }
+            };
         }
-    } else {
+    }
+    else {
         ctx.body = {
             success: false,
             info: '用户不存在'
-        }
+        };
     }
-}
+};
 const registerUser = async function (ctx) {
-    let {
-        username,
-        password
-    } = ctx.request.body;
+    let { username, password } = ctx.request.body;
     if (username === undefined || username === '') {
         ctx.body = {
             success: false,
@@ -91,26 +91,26 @@ const registerUser = async function (ctx) {
         return;
     }
     const userinfo = await user.getUserByName(username);
-    console.log('userinfo',userinfo);
+    console.log('userinfo', userinfo);
     if (userinfo != null) {
         ctx.body = {
             success: false,
             info: '用户已存在'
-        }
+        };
         return;
     }
     let newUser = new user({
         username: username,
         password: password,
-    })
+    });
     newUser.save();
-    ctx.body={
-        success:true
-    }
-
-}
-export default {
+    ctx.body = {
+        success: true
+    };
+};
+exports.default = {
     getUserInfo,
     postUserAuth,
     registerUser
-}
+};
+//# sourceMappingURL=user.js.map

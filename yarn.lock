@@ -84,11 +84,21 @@
   dependencies:
     "@types/node" "*"
 
+"@types/bcryptjs@^2.4.1":
+  version "2.4.1"
+  resolved "http://registry.npm.taobao.org/@types/bcryptjs/download/@types/bcryptjs-2.4.1.tgz#7fb63922b5b106edacdcfe084cd38850f78aacfc"
+
 "@types/body-parser@*":
   version "1.16.8"
   resolved "http://registry.npm.taobao.org/@types/body-parser/download/@types/body-parser-1.16.8.tgz#687ec34140624a3bec2b1a8ea9268478ae8f3be3"
   dependencies:
     "@types/express" "*"
+    "@types/node" "*"
+
+"@types/bson@*":
+  version "1.0.7"
+  resolved "http://registry.npm.taobao.org/@types/bson/download/@types/bson-1.0.7.tgz#c7dc60b561e8556ae9442e07ce4d01e34651d4d8"
+  dependencies:
     "@types/node" "*"
 
 "@types/connect@*":
@@ -164,6 +174,22 @@
 "@types/mime@*":
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/@types/mime/download/@types/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
+
+"@types/mongodb@*", "@types/mongodb@^3.0.7":
+  version "3.0.7"
+  resolved "http://registry.npm.taobao.org/@types/mongodb/download/@types/mongodb-3.0.7.tgz#f71f403b392b1f5414b85ec395360868edb4f6e3"
+  dependencies:
+    "@types/bson" "*"
+    "@types/events" "*"
+    "@types/node" "*"
+
+"@types/mongoose@^5.0.7":
+  version "5.0.7"
+  resolved "http://registry.npm.taobao.org/@types/mongoose/download/@types/mongoose-5.0.7.tgz#20c7c2a6eab9448c7fe2cfd26933d2bf1a036575"
+  dependencies:
+    "@types/events" "*"
+    "@types/mongodb" "*"
+    "@types/node" "*"
 
 "@types/node@*":
   version "9.4.7"
@@ -3655,6 +3681,10 @@ strip-eof@^1.0.0:
 strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "http://registry.npm.taobao.org/strip-json-comments/download/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
+
+supervisor@^0.12.0:
+  version "0.12.0"
+  resolved "http://registry.npm.taobao.org/supervisor/download/supervisor-0.12.0.tgz#de7e6337015b291851c10f3538c4a7f04917ecc1"
 
 supports-color@^2.0.0:
   version "2.0.0"
